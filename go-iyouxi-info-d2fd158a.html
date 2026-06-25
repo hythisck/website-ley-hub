@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 简明指南与访问提醒</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fde9d8 0%, #f5d6c6 50%, #f0c9b2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5rem 1.5rem;
+            line-height: 1.6;
+            color: #2d2a27;
+        }
+        .page-card {
+            max-width: 780px;
+            width: 100%;
+            background: rgba(255, 250, 245, 0.92);
+            backdrop-filter: blur(4px);
+            border-radius: 48px 48px 36px 36px;
+            box-shadow: 0 20px 40px -12px rgba(140, 80, 50, 0.28), 0 8px 20px rgba(0,0,0,0.02);
+            padding: 2.8rem 2.5rem;
+            transition: all 0.2s ease;
+        }
+        @media (max-width: 540px) {
+            body { padding: 1.2rem 0.8rem; }
+            .page-card { padding: 2rem 1.4rem; border-radius: 32px; }
+        }
+
+        /* hero区块 */
+        .hero {
+            text-align: center;
+            padding-bottom: 2.2rem;
+            border-bottom: 2px dashed #e6cdbc;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #b45f3a, #8d482b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.6rem;
+        }
+        .hero .sub {
+            font-size: 1.15rem;
+            color: #5a4341;
+            background: #f1e1d6;
+            display: inline-block;
+            padding: 0.2rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 450;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1rem;
+            max-width: 540px;
+            margin: 0.6rem auto 0;
+            color: #4f3d38;
+        }
+
+        /* 优势区 三列卡片 */
+        .advantage-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin: 2rem 0 1.8rem;
+        }
+        .advantage-card {
+            background: #fffbf7;
+            border-radius: 28px;
+            padding: 1.2rem 0.9rem 1rem;
+            box-shadow: 0 4px 12px rgba(170, 110, 80, 0.08);
+            text-align: center;
+            border: 1px solid #f5e3d8;
+            transition: transform 0.15s ease, box-shadow 0.2s;
+        }
+        .advantage-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 18px -6px rgba(140, 80, 50, 0.15);
+        }
+        .advantage-card .icon {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+        .advantage-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #6f3f2c;
+            margin: 0.2rem 0 0.3rem;
+        }
+        .advantage-card p {
+            font-size: 0.85rem;
+            color: #564440;
+        }
+        @media (max-width: 580px) {
+            .advantage-grid {
+                grid-template-columns: 1fr;
+                gap: 0.9rem;
+            }
+        }
+
+        /* 说明区 */
+        .guide-section {
+            background: #fffcf8;
+            border-radius: 28px;
+            padding: 1.8rem 1.8rem 1.5rem;
+            margin: 1.6rem 0 1.2rem;
+            border-left: 6px solid #d9aa8b;
+            box-shadow: inset 0 1px 4px rgba(255,240,230,0.5);
+        }
+        .guide-section h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #6e3d2b;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .guide-section ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+        .guide-section li {
+            font-size: 0.96rem;
+            padding-left: 1.8rem;
+            position: relative;
+            color: #3f312d;
+        }
+        .guide-section li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #b87a5e;
+            font-weight: bold;
+        }
+        .guide-section .highlight-link {
+            background: #e9d6ca;
+            padding: 0.1rem 0.5rem;
+            border-radius: 20px;
+            font-weight: 500;
+            color: #452f28;
+        }
+
+        /* FAQ摘要 */
+        .faq-mini {
+            background: #fcf4ed;
+            border-radius: 26px;
+            padding: 1.5rem 1.8rem;
+            margin: 1.4rem 0 1.8rem;
+        }
+        .faq-mini h3 {
+            font-size: 1.2rem;
+            font-weight: 550;
+            color: #633c2c;
+            margin-bottom: 0.8rem;
+        }
+        .faq-item {
+            margin-bottom: 0.6rem;
+            border-bottom: 1px solid #eddccf;
+            padding-bottom: 0.5rem;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .faq-question {
+            font-weight: 600;
+            font-size: 0.92rem;
+            color: #4b342b;
+            display: block;
+            margin-bottom: 0.1rem;
+        }
+        .faq-answer {
+            font-size: 0.88rem;
+            color: #5e4941;
+        }
+
+        /* 底部链接区 圆角按钮感 */
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.8rem 1.5rem;
+            margin-top: 1rem;
+            padding-top: 1.2rem;
+            border-top: 2px solid #edd7cb;
+        }
+        .footer-links a {
+            display: inline-block;
+            background: #faece3;
+            padding: 0.5rem 1.4rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #4d3229;
+            text-decoration: none;
+            border: 1px solid #dbb9a6;
+            transition: background 0.2s, box-shadow 0.15s, transform 0.1s;
+            box-shadow: 0 2px 6px rgba(130, 75, 50, 0.05);
+        }
+        .footer-links a:hover {
+            background: #e7cfbe;
+            box-shadow: 0 4px 10px rgba(110, 65, 40, 0.12);
+            transform: scale(1.02);
+        }
+        .footer-links .primary-link {
+            background: #b77f62;
+            color: white;
+            border-color: #a16c50;
+            font-weight: 600;
+            padding: 0.5rem 1.8rem;
+        }
+        .footer-links .primary-link:hover {
+            background: #9e6548;
+        }
+        .footer-note {
+            margin-top: 1rem;
+            text-align: center;
+            font-size: 0.78rem;
+            color: #78655b;
+            letter-spacing: 0.2px;
+        }
+        .inline-link {
+            color: #985f42;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px dotted #b5876e;
+            transition: border 0.15s;
+        }
+        .inline-link:hover {
+            border-bottom: 1px solid #6f3f2a;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-card">
+
+        <!-- hero -->
+        <div class="hero">
+            <h1>爱游戏</h1>
+            <span class="sub">简明指南 · 随时出发</span>
+            <p>快速了解平台结构、访问建议与常见疑问，让每次使用都更顺畅。</p>
+        </div>
+
+        <!-- 三优势卡片：轻快、清晰、兼容 -->
+        <div class="advantage-grid">
+            <div class="advantage-card">
+                <span class="icon">⚡</span>
+                <h3>轻量直达</h3>
+                <p>无需复杂跳转，打开即用，专注内容本身。</p>
+            </div>
+            <div class="advantage-card">
+                <span class="icon">📋</span>
+                <h3>信息清晰</h3>
+                <p>分类与导航保持直觉化，减少寻找成本。</p>
+            </div>
+            <div class="advantage-card">
+                <span class="icon">🌐</span>
+                <h3>多端适配</h3>
+                <p>无论桌面或移动设备，界面自然响应。</p>
+            </div>
+        </div>
+
+        <!-- 说明区：简明指南 & 访问提醒 -->
+        <div class="guide-section">
+            <h2>📌 访问提醒 · 简明指引</h2>
+            <ul>
+                <li><strong>直接访问</strong> — 在浏览器地址栏输入 <a href="https://go-iyouxi.com" class="inline-link">爱游戏</a> 即可进入主站，建议使用最新版 Chrome、Edge 或 Safari。</li>
+                <li><strong>网络环境</strong> — 若加载缓慢，可尝试切换网络或刷新页面；公共 Wi-Fi 下建议留意连接稳定性。</li>
+                <li><strong>内容指引</strong> — 平台按类型与热度组织内容，善用搜索和分类标签能更快找到感兴趣的部分。</li>
+                <li><strong>账户与数据</strong> — 登录后个人数据仅存于本地设备，请勿在共享设备上勾选「记住密码」。</li>
+                <li><strong>链接安全</strong> — 认准域名 <span class="highlight-link">go-iyouxi.com</span>，避免仿冒站点；如遇异常弹窗请立即关闭。</li>
+            </ul>
+        </div>
+
+        <!-- FAQ摘要 三个精简问答 -->
+        <div class="faq-mini">
+            <h3>❓ 常见疑问摘要</h3>
+            <div class="faq-item">
+                <span class="faq-question">是否需要注册才能浏览？</span>
+                <div class="faq-answer">大部分内容可直接浏览，部分互动或收藏功能需注册账户。注册仅需邮箱与昵称。</div>
+            </div>
+            <div class="faq-item">
+                <span class="faq-question">移动端体验如何？</span>
+                <div class="faq-answer">页面采用响应式布局，手机与平板均可自适应，推荐横屏浏览部分列表页。</div>
+            </div>
+            <div class="faq-item">
+                <span class="faq-question">遇到页面显示异常怎么办？</span>
+                <div class="faq-answer">先尝试清除浏览器缓存或禁用第三方插件；依旧异常可向站内反馈通道描述问题。</div>
+            </div>
+        </div>
+
+        <!-- 底部链接区：圆角按钮感链接 -->
+        <div class="footer-links">
+            <a href="https://go-iyouxi.com" class="primary-link">爱游戏</a>
+            <a href="#">内容分类</a>
+            <a href="#">使用帮助</a>
+            <a href="#">隐私说明</a>
+        </div>
+        <div class="footer-note">
+            go-iyouxi.com · 简明 · 可靠 · 持续优化
+        </div>
+
+    </div>
+</body>
+</html>
