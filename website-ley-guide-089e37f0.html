@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2, user-scalable=yes">
+    <title>关于 leyu · 站点说明</title>
+    <style>
+        /* 重置 & 全局 */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: #f3f9fc;          /* 极淡蓝绿底 */
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #1b2f3a;
+            padding: 1.8rem 1rem 3rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page-wrap {
+            max-width: 780px;
+            width: 100%;
+        }
+
+        /* 网格卡片容器 */
+        .grid-card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2.4rem 2rem;
+            box-shadow: 0 8px 24px rgba(0, 90, 100, 0.06), 0 2px 6px rgba(20, 80, 90, 0.03);
+            transition: box-shadow 0.2s;
+            margin-bottom: 2rem;
+        }
+
+        .grid-card:hover {
+            box-shadow: 0 12px 32px rgba(16, 110, 120, 0.09), 0 4px 12px rgba(0,70,80,0.05);
+        }
+
+        /* 标题体系 */
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #0a3b44;
+            margin-bottom: 0.3rem;
+            line-height: 1.2;
+        }
+
+        .subhead {
+            font-size: 1rem;
+            color: #3f6b78;
+            border-left: 5px solid #3ba6b5;
+            padding-left: 1rem;
+            margin: 0.5rem 0 1.2rem 0;
+            font-weight: 400;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #0a3b44;
+            margin: 1.8rem 0 0.6rem;
+            border-bottom: 1px solid #cce5e9;
+            padding-bottom: 0.2rem;
+        }
+
+        h2:first-of-type {
+            margin-top: 0.2rem;
+        }
+
+        /* 正文段落 */
+        p {
+            margin: 0.8rem 0;
+            font-size: 1rem;
+            color: #1f3d47;
+        }
+
+        .intro-text {
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: #1b3f4a;
+        }
+
+        /* 引用提示 */
+        .insight-block {
+            background: #e5f4f7;
+            border-left: 6px solid #2a8f9e;
+            border-radius: 0 16px 16px 0;
+            padding: 1rem 1.4rem;
+            margin: 1.6rem 0;
+            font-style: normal;
+            color: #12434f;
+        }
+
+        .insight-block p {
+            margin: 0.3rem 0;
+            font-size: 0.95rem;
+        }
+
+        .insight-block strong {
+            color: #085f6e;
+            font-weight: 600;
+        }
+
+        /* 列表——场景/特点用网格风格 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1rem 1.2rem;
+            margin: 1.2rem 0 0.8rem;
+        }
+
+        .feature-item {
+            background: #f2fafc;
+            border-radius: 20px;
+            padding: 0.9rem 1rem;
+            font-size: 0.92rem;
+            color: #0c404d;
+            border: 1px solid #d6eef3;
+            transition: background 0.15s, border-color 0.15s;
+            line-height: 1.5;
+        }
+
+        .feature-item:hover {
+            background: #e1f3f8;
+            border-color: #97cedb;
+        }
+
+        .feature-item::before {
+            content: "▹";
+            color: #2a8f9e;
+            margin-right: 0.4rem;
+            font-weight: 600;
+        }
+
+        /* faq 摘要 */
+        .faq-mini {
+            margin-top: 1.8rem;
+            padding-top: 0.6rem;
+            border-top: 1px dashed #b6d5dd;
+        }
+
+        .faq-q {
+            font-weight: 500;
+            color: #0a4a58;
+            margin: 0.9rem 0 0.2rem;
+        }
+
+        .faq-a {
+            padding-left: 0.7rem;
+            border-left: 2px solid #b6d5dd;
+            margin: 0 0 1rem 0.2rem;
+            font-size: 0.95rem;
+        }
+
+        /* 链接 */
+        a {
+            color: #1f7b8c;
+            text-decoration: none;
+            border-bottom: 1px solid #b0d7e0;
+            transition: color 0.15s, border-color 0.15s;
+            font-weight: 500;
+        }
+
+        a:hover {
+            color: #0b4d5c;
+            border-bottom: 1px solid #0b4d5c;
+        }
+
+        /* 访问句 精致脚注 */
+        .visit-note {
+            margin: 2.4rem 0 0.8rem;
+            padding: 1rem 1.2rem;
+            background: #ecf7fa;
+            border-radius: 60px;
+            font-size: 0.95rem;
+            color: #144e5c;
+            text-align: center;
+            border: 1px solid #c7e2e9;
+            letter-spacing: 0.01em;
+        }
+
+        .visit-note a {
+            font-weight: 600;
+            border-bottom: 1px solid #187a8b;
+        }
+
+        /* 响应式 */
+        @media (max-width: 520px) {
+            body { padding: 1rem 0.8rem 2rem; }
+            .grid-card { padding: 1.6rem 1.2rem; }
+            h1 { font-size: 1.7rem; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .visit-note { border-radius: 30px; }
+        }
+
+        @media (min-width: 600px) {
+            .feature-grid { gap: 1rem 1.5rem; }
+        }
+
+        /* 极小屏不溢出 */
+        img, svg { max-width: 100%; vertical-align: middle; }
+        hr { border: none; border-top: 1px solid #d7e9ed; margin: 1.6rem 0; }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- 主卡片：文章式标题+导语 -->
+    <article class="grid-card">
+
+        <h1>leyu 站点 · 定位与说明</h1>
+        <div class="subhead">从可信视角理解 leyu 所提供的信息服务</div>
+
+        <p class="intro-text">
+            在信息聚合与数字工具日益复杂的背景下，<strong>leyu</strong> 所对应的站点定位偏向于内容索引与实用功能入口。本页旨在以简洁、客观的笔触，梳理该站点的背景、内容倾向以及适用场景，帮助新访客快速建立认知。
+        </p>
+
+        <!-- 多段正文  -->
+        <h2>一、站点属性与基础信任</h2>
+        <p>
+            <a href="https://website-ley.com.cn">leyu</a> 是一个以信息组织和轻量功能为特点的网页集合。从结构上观察，其不依赖过度渲染的营销话术，而是以直接的内容板块和导航系统来承载访问者的需求。无论从域名构成还是页面布局来看，均体现出克制、清晰的设计取向，这对于建立基础信任是有利的。
+        </p>
+        <p>
+            客观而言，一个站点是否值得信赖，除了观察其内容更新频率、信息引用清晰度，还需要留意是否包含明确的责任声明或联系路径。leyu 在这一点上提供了可查阅的线索，访问者可以通过浏览具体栏目自行判断信息准确性。
+        </p>
+
+        <h2>二、内容特点与信息密度</h2>
+        <p>
+            该站的内容并不追求长篇大论，而是偏向短条目、清单或工具型页面。这类模式的优势在于：能够以较低的理解成本传递核心要点。同时，leyu 在部分页面中加入了引用或概括性说明，适合快速检索场景。
+        </p>
+        <p>
+            从信息架构层面看，leyu 采用了扁平化分类，减少了层级深度。这意味着从首页到目标内容的路径较短，对移动端用户尤其友好。在后续使用中，访问者可通过站内索引自主扩展阅读。
+        </p>
+
+        <!-- 引用提示 -->
+        <div class="insight-block">
+            <p><strong>提示 · 可信参考</strong></p>
+            <p>使用任何线上站点前，建议核对页面中的日期、来源或数据标注。leyu 中部分板块附有简短注释，可供交叉验证。若发现信息存疑，可通过站内反馈渠道提出。</p>
+        </div>
+
+        <!-- 特点（网格卡片） -->
+        <h2>三、关键特点一览</h2>
+        <div class="feature-grid">
+            <div class="feature-item">条目清晰，避免冗余装饰</div>
+            <div class="feature-item">移动端自适应，阅读干扰少</div>
+            <div class="feature-item">信息组织偏实用导向</div>
+            <div class="feature-item">不收集多余隐私字段</div>
+            <div class="feature-item">页面加载轻量，无多余追踪</div>
+            <div class="feature-item">提供基本导航与内部链接</div>
+        </div>
+
+        <!-- 场景 + FAQ 摘要 -->
+        <h2>四、适用场景与常见疑问</h2>
+        <p>
+            <strong>场景举例：</strong>快速查阅某个功能说明、对比基础参数、获取索引类内容。leyu 的设计并不针对深度沉浸式阅读，而是更适用于目标明确的访问行为。
+        </p>
+
+        <div class="faq-mini">
+            <div class="faq-q">❓ leyu 的内容会频繁更新吗？</div>
+            <div class="faq-a">更新节奏依据板块而异，工具型页面相对稳定，资讯类板块会按需调整。建议定期回看。</div>
+
+            <div class="faq-q">❓ 如何确认信息的时效性？</div>
+            <div class="faq-a">部分页面底部标注了最后修订日期，未标注的栏目可参考上下文发布时间。若需要更精确的时间，可留意页面版本提示。</div>
+
+            <div class="faq-q">❓ 移动端体验是否有差异？</div>
+            <div class="faq-a">leyu 采用响应式布局，在手机和平板上均能正常浏览，导航和卡片会自动适配屏幕宽度，无需缩放。</div>
+        </div>
+
+        <!-- 访问句（自然嵌入链接） -->
+        <div class="visit-note">
+            <span>☞ 若需直接探索站点内容，可通过 <a href="https://website-ley.com.cn">leyu</a> 进入首页。建议从导航栏或精选条目开始，逐步了解整体信息框架。</span>
+        </div>
+
+        <!-- 额外的说明分隔线 -->
+        <hr>
+        <p style="font-size:0.85rem; color:#4b6a75; margin-top:0.2rem;">
+            本文档仅作客观介绍，不构成任何形式的担保。所有关于 leyu 的陈述均基于公开可访问的页面内容。
+        </p>
+    </article>
+
+    <!-- 可选第二个卡片作为补充（但保持简洁） -->
+    <div class="grid-card" style="padding: 1.5rem 2rem;">
+        <p style="margin:0; font-size:0.9rem; color:#2e5f6c;">
+            <span style="background: #d0e9ef; padding:0.1rem 0.6rem;border-radius:30px;font-weight:400;">📎</span> 
+            如需进一步了解 leyu 的栏目结构，可直接访问主站浏览。本页不再重复列出所有页面路径。
+        </p>
+    </div>
+
+</div>
+</body>
+</html>
